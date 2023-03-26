@@ -10,6 +10,7 @@ import { IProduct2 } from './product2';
 export class ProductsService {
   private productUrl = 'api/products/products.json';
   private product2Url = 'api/products/products2.json';
+  private productCombinedUrl = 'api/products/productsCombined.json';
 
   constructor(private http: HttpClient) { }
 
@@ -49,6 +50,17 @@ export class ProductsService {
     );  
 
     products2$ = this.http.get<IProduct2[]>(this.product2Url)
+    .pipe(
+      map(products =>
+        products.map(product => ({
+          ...product,
+          searchKey: [product.ProductName]
+        } as IProduct2))),
+      tap(data => console.log('Products 2: ', JSON.stringify(data))),
+      catchError(this.handleError)
+    );  
+    
+    productsCombined$ = this.http.get<IProduct2[]>(this.productCombinedUrl)
     .pipe(
       map(products =>
         products.map(product => ({

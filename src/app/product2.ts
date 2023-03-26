@@ -1,10 +1,19 @@
+import { ICategory } from "./category";
+
 export interface IProduct2{
     ProductID: number,
-    ProductName: string
+    ProductName: string;
+    SupplierID: number;
+    CategoryID: number;
+    QuantityPerUnit: string;
+    UnitPrice: number;
+    UnitsInStock: number;
+    UnitsOnOrder: number;
+    ReorderLevel: number;
+    Discontinued: boolean;
+    Category: ICategory;
+    FirstOrderedOn: Date;
 }
-
-
-
 
 
 // {

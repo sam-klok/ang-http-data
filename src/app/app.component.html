@@ -9,6 +9,12 @@
   {{products2$ | async | json}}
 </p>
 
+<br/>
+<h5>Products Combined from productsCombined.json</h5>
+<p>
+  {{productsCombined$ | async | json}}
+</p>
+
 <div class="alert alert-danger"
      *ngIf="errorMessage">
   {{ errorMessage | json }}

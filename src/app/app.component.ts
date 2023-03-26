@@ -13,6 +13,7 @@ export class AppComponent {
   errorMessage = '';
   products$: any;
   products2$: any;
+  productsCombined$: any;
 
 
   constructor(private productService: ProductsService) { 
@@ -25,6 +26,14 @@ export class AppComponent {
     );
 
     this.products2$ = this.productService.products2$
+    .pipe(
+      catchError(err => {
+        this.errorMessage = err;
+        return EMPTY;
+      })
+    );
+
+    this.productsCombined$ = this.productService.productsCombined$
     .pipe(
       catchError(err => {
         this.errorMessage = err;
